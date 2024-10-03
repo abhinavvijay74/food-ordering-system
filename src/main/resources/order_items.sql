@@ -1,0 +1,11 @@
+CREATE TABLE order_items (
+    order_item_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    order_id BIGINT NOT NULL,
+    menu_id BIGINT NOT NULL,
+    price DOUBLE NOT NULL,
+    quantity INT NOT NULL CHECK (quantity > 0),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
+    FOREIGN KEY (menu_id) REFERENCES menu_items(id) ON DELETE NO ACTION
+);
